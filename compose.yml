@@ -2,43 +2,42 @@
 version: "3"
 services:
   db:
-    image: dbimage
+    image: kavyacherukuru/pyapp-1:dbimage
     ports:
       - "3306:3306"
     deploy:
       replicas: 1
   auth_service:
-    image: authimage
+    image: kavyacherukuru/pyapp-1:authimage
     ports:
       - "1111:5001"
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on:
       - db
   book_service:
-    image: bookimage
+    image: kavyacherukuru/pyapp-1:bookimage
     ports:
       - "2222:5002"
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on:
       - db
   borrow_service:
-    image: borrowimage
+    image: kavyacherukuru/pyapp-1:borrowimage
     ports:
       - "3333:5003"
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on: 
       - db
   frontend_service:
-    image: frontendimage
+    image: kavyacherukuru/pyapp-1:frontendimage
     ports:
       - "4444:5000"
     deploy:
-      replicas: 2
+      replicas: 1 
     depends_on:
       - auth_service
       - book_service
       - borrow_service
-      
